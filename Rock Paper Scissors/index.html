@@ -3,11 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="index.JS"></script>
-    <style src="index.css"></style>
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+
 </head>
-<body>
-    
+<body background="Images\BG.png">
+    <div id="title">
+        <h1 class="head">ROCK PAPER SCISSORS</h1>
+        <h4 class="head">The first to 5 points win</h4>
+    </div>
+    <div id="gameContainer">
+        <div class ="playersContainer"> 
+            <img class="icon" src="Images\User.jpg" alt="user Image">
+            <ul id="buttonList" class="buttonList">
+                <li><button id="rock"><img class="btnImg" src="Images\Rock.png" alt="Rock"></button></li>
+                <li><button id="paper"><img class="btnImg" src="Images\Paper.png" alt="Paper"></button></li>
+                <li><button id="scissors"><img class="btnImg" src="Images\Scissors.png" alt="Scissors"></button></li>
+            </ul>
+            <div id="healthBarPlayer">
+                <img id="healthP1" class="healthP" src="Images/HeartFull.png" alt="1HP">
+                <img id="healthP2" class="healthP" src="Images/HeartFull.png" alt="2HP">
+                <img id="healthP3" class="healthP" src="Images/HeartFull.png" alt="3HP">
+                <img id="healthP4" class="healthP" src="Images/HeartFull.png" alt="4HP">
+                <img id="healthP5" class="healthP" src="Images/HeartFull.png" alt="5HP">
+            </div>
+        </div>
+        <div id="swords">
+            <img src="Images/Swords.png" alt="Crossing swords">
+            <h6 id="gameInfo"></h6>
+            <button id="btnNewGame">New game</button>
+            
+        </div>
+        <div class ="playersContainer"> 
+            <img class="icon" src="Images\Computer.png" alt="computer Image">
+            <ul class="buttonList">
+                <li><button ><img class="btnImg" src="Images\Rock.png" alt="Rock"></button></li>
+                <li><button ><img class="btnImg" src="Images\Paper.png" alt="Paper"></button></li>
+                <li><button ><img class="btnImg" src="Images\Scissors.png" alt="Scissors"></button></li>
+            </ul>
+            <div id="healthBarComp">
+                <img id="healthC1" class="healthC" src="Images/HeartFull.png" alt="1HP">
+                <img id="healthC2" class="healthC" src="Images/HeartFull.png" alt="2HP">
+                <img id="healthC3" class="healthC" src="Images/HeartFull.png" alt="3HP">
+                <img id="healthC4" class="healthC" src="Images/HeartFull.png" alt="4HP">
+                <img id="healthC5" class="healthC" src="Images/HeartFull.png" alt="5HP">
+            </div>
+        </div>
+    </div>  
+    <div id="footer">
+        Fonts made from <a href="https://www.onlinewebfonts.com/icon">svg icons</a> is licensed by CC BY 4.0
+    </div>
 </body>
 </html>

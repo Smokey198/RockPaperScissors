@@ -1,5 +1,35 @@
- function getComputerChoice()
- {
+
+let cScore = 0;
+let pScore = 0;
+
+//Player button event creation
+let rock = document.querySelector('#rock');
+    rock.addEventListener('click', (event) => 
+    {
+        console.log("Player throws rock");
+        playGame("rock");   
+    });
+let paper = document.querySelector('#paper');
+    paper.addEventListener('click', (event) => 
+    {
+        console.log("Player throws paper");
+        playGame("paper");
+    });
+let scissors = document.querySelector('#scissors');
+    scissors.addEventListener('click', (event) => 
+    {
+        console.log("Player throws scissors");
+        playGame("scissors");
+    });
+    
+let newGame = document.querySelector('#btnNewGame');
+    newGame.addEventListener('click', (event) =>
+    {
+        restartGame();
+    });
+
+function getComputerChoice()
+{
     let compChoice = Math.floor(Math.random() * 3 + 1);
 
     if (compChoice === 1) 
@@ -11,135 +41,177 @@
     {
         compChoice = "paper";
         console.log("Computer throws paper");
-
     }
     else
     {
         compChoice = "scissors";   
         console.log("Computer throws scissors");
-
     }
     return compChoice;
- }
-
-
-function getUserChoice() 
-{
-    let playerChoice = prompt("Choose rock, paper or scissors");
-
-    if (playerChoice.toLowerCase() === "rock")
-    {
-        playerChoice = "rock";
-        console.log("Player throws rock");
-
-    }
-    else if (playerChoice.toLowerCase() === "paper")
-    {
-        playerChoice = "paper";
-        console.log("Player throws paper");
-
-    }
-    else if (playerChoice.toLowerCase() === "scissors")
-    {
-        playerChoice = "scissors";
-        console.log("Player throws scissors");
-
-    }
-    else
-    {
-        console.log("Please enter a valid input");
-    }
-    return playerChoice
 }
 
+//Handles score
+function playGame(playerChoice)
+{
+    const playerSelection = playerChoice;
+    const computerSelection = getComputerChoice();
+    
+    console.log(playRound(playerSelection, computerSelection));
+    winner = playRound(playerSelection, computerSelection);
+
+    if (winner === "Player wins round!") 
+    {
+        pScore += 1;
+        
+    }
+    if (winner === "Computer wins round!")
+    {
+        cScore += 1;
+    }  
+        
+    console.log("Player: " + pScore);
+    console.log("Computer: " + cScore);
+
+    //Handles health bar (score)
+    switch (pScore) 
+    {
+    case 1:
+        var img = document.querySelector('#healthC5');
+        img.src = 'Images/HeartEmpty.png'
+        break;
+    case 2:
+        var img = document.querySelector('#healthC4');
+        img.src = 'Images/HeartEmpty.png'
+        break;
+    case 3:
+        var img = document.querySelector('#healthC3');
+        img.src = 'Images/HeartEmpty.png'
+        break;
+    case 4:
+        var img = document.querySelector('#healthC2');
+        img.src = 'Images/HeartEmpty.png'
+        break;
+    case 5:
+        var img = document.querySelector('#healthC1');
+        img.src = 'Images/HeartEmpty.png'
+        endGame("player");
+        break;
+    }
+    switch (cScore) 
+    {
+    case 1:
+        var img = document.querySelector('#healthP5');
+        img.src = 'Images/HeartEmpty.png'
+        break;
+    case 2:
+        var img = document.querySelector('#healthP4');
+        img.src = 'Images/HeartEmpty.png'
+        break;
+    case 3:
+        var img = document.querySelector('#healthP3');
+        img.src = 'Images/HeartEmpty.png'
+        break;
+    case 4:
+        var img = document.querySelector('#healthP2');
+        img.src = 'Images/HeartEmpty.png'
+        break;
+    case 5:
+        var img = document.querySelector('#healthP1');
+        img.src = 'Images/HeartEmpty.png'
+        endGame("computer");
+        break;
+    }
+}
+       
 function playRound(playerSelection, computerSelection)
 {
-    //Computer plays Rock
-    if (playerSelection === "rock" && computerSelection === "rock")
+    //Round is a tie
+    if ((playerSelection === "rock" && computerSelection === "rock") ||
+    (playerSelection === "paper" && computerSelection === "paper") ||
+    (playerSelection === "scissors" && computerSelection === "scissors"))
     {
-        return "Round is a tie";
-        
-    }
-    if (playerSelection === "paper" && computerSelection === "rock")
-    {
-        return "Player wins round!";
-    }
-    if (playerSelection === "scissors" && computerSelection === "rock")
-    {
-        return "Computer wins round!";
-    }
-    //Computer plays Paper
-    if (playerSelection === "rock" && computerSelection === "paper")
-    {
-        return "Computer wins round!";
-    }
-    if (playerSelection === "paper" && computerSelection === "paper")
-    {
+        document.querySelector('#gameInfo').innerHTML = "Round is a tie!";               
         return "Round is a tie";
     }
-    if (playerSelection === "scissors" && computerSelection === "paper")
+    //Player wins round
+    if ((playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "rock" && computerSelection === "scissors"))
     {
-        return "Player wins round!" ;
-    }
-    //Computer plays Scissors
-    if (playerSelection === "rock" && computerSelection === "scissors")
-    {
+        document.querySelector('#gameInfo').innerHTML = "Player wins round!";        
         return "Player wins round!";
     }
-    if (playerSelection === "paper" && computerSelection === "scissors")
+    //Computer wins round
+    if ((playerSelection === "scissors" && computerSelection === "rock") ||
+    (playerSelection === "rock" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "scissors"))
     {
+        document.querySelector('#gameInfo').innerHTML = "Computer wins round!";               
         return "Computer wins round!";
-    }
-    if (playerSelection === "scissors" && computerSelection === "scissors")
-    {
-        return "Round is a tie" ;
     }
 }
 
-
-function playGame()
+//Displays winner, disables player buttons and creates new game button
+function endGame(gameWinner)
 {
-    let cScore = 0;
-    let pScore = 0;
-    
-    for (let i = 0; i < 5; i++) 
+    if (gameWinner === "player") 
     {
-       
-        const playerSelection = getUserChoice();
-        const computerSelection = getComputerChoice();
-        
-        console.log(playRound(playerSelection, computerSelection));
-        winner = playRound(playerSelection, computerSelection);
-
-        if (winner === "Player wins round!") 
-        {
-            pScore += 1;
-        }
-        if (winner === "Computer wins round!")
-        {
-            cScore += 1;
-        }  
-            
-        console.log("Player: " + pScore);
-        console.log("Computer: " + cScore);
+        document.querySelector('#gameInfo').innerHTML = "Player wins game!";  
+        console.log("Player wins game!");   
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;        
+        let newGame = document.querySelector('#btnNewGame');
+        newGame.style.display = 'flex';
     }
-
-    if (cScore > pScore) 
+    else if (gameWinner === "computer")
     {
-        console.log("Computer wins game!");
-    }
-    if (pScore > cScore)
-    {
-     console.log("Player wins game!");
-    }
-    if (pScore === cScore)
-    {
-        console.log("It's a tie!");
+        document.querySelector('#gameInfo').innerHTML = "Computer wins game!";  
+        console.log("Computer wins game!"); 
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true; 
+        let newGame = document.querySelector('#btnNewGame');
+        newGame.style.display = 'flex';           
     }
 }
 
+function restartGame()
+{
+    cScore = 0;
+    pScore = 0;
+    rock.disabled = false;
+    paper.disabled = false;
+    scissors.disabled = false; 
+    let newGame = document.querySelector('#btnNewGame');
+        newGame.style.display = 'none';  
+        document.querySelector('#gameInfo').innerHTML = ""; 
+    resetHealth();              
+}
 
+function resetHealth()
+{
+    //Reset computer healthbar
+    var img = document.querySelector('#healthC5');
+    img.src = 'Images/Heartfull.png'
+    var img = document.querySelector('#healthC4');
+    img.src = 'Images/Heartfull.png'
+    var img = document.querySelector('#healthC3');
+    img.src = 'Images/Heartfull.png'
+    var img = document.querySelector('#healthC2');
+    img.src = 'Images/Heartfull.png'
+    var img = document.querySelector('#healthC1');
+    img.src = 'Images/Heartfull.png'
 
-
-
-playGame();
+    //Reset player healthbar
+    var img = document.querySelector('#healthP5');
+    img.src = 'Images/Heartfull.png'
+    var img = document.querySelector('#healthP4');
+    img.src = 'Images/Heartfull.png'
+    var img = document.querySelector('#healthP3');
+    img.src = 'Images/Heartfull.png'
+    var img = document.querySelector('#healthP2');
+    img.src = 'Images/Heartfull.png'
+    var img = document.querySelector('#healthP1');
+    img.src = 'Images/Heartfull.png'
+} 

@@ -1,0 +1,162 @@
+
+
+#title
+{
+    font-family: Blocky;
+    font-size: x-large;
+    color: white;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 100px;
+}
+
+h1
+{
+    margin: 0;
+}
+
+@font-face 
+{
+    font-family: Blocky;
+    font-weight: 400;  
+    font-style: normal;  
+    font-display: swap; 
+    unicode-range: U+000-5FF; 
+    src: local('\Fonts\MinecraftRegular.woff'),       
+    url(Fonts/MinecraftRegular.woff) 
+    format('woff');
+} 
+
+.head
+{
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#gameContainer
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+.playersContainer
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+#swords
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 150px;
+    width: 190px;
+}
+
+#gameInfo
+{
+    margin: 0;
+    height: 60px;
+    width: 190px;
+    align-items: center;
+    font-family: Blocky;
+    font-size: x-large;
+    color: white;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.icon
+{
+    height: 100px;
+    width: 100px;
+    padding: 0px;
+    border: 10px solid black;
+    border-style: outset;
+
+}
+
+.buttonList
+{
+    height: 100px;
+    padding: 20px;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+}
+
+button
+{
+    height: 100px;
+    width: 100px;
+    border: 5px solid black;
+    border-style: outset;
+}
+
+#rock, #paper , #scissors
+{
+    transition: 0.4s;
+}
+
+#rock:hover , #paper:hover, #scissors:hover
+{
+    background-color: grey;
+}
+
+#rock:active , #paper:active, #scissors:active
+{
+    border-style: inset;
+}
+
+.btnImg
+{
+    height: 80px;
+    width: 80px;
+}
+
+#healthBarComp, #healthBarPlayer
+{
+    display: flex;
+    gap: 20px;
+}
+
+.healthC, .healthP
+{
+    height: 50px;
+    width: 50px;
+}
+
+#btnNewGame
+{   
+    margin-top: 20px;
+    height: 50px;
+    padding: 20px;
+    width: 190px;
+    font-family: Blocky;
+    font-size: x-large;
+    color: black;    
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#footer
+{
+    font-family: Blocky;
+    margin-top:  50px;
+    margin-left: 5px;
+    color: white;
+}
